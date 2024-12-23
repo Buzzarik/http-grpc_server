@@ -1,0 +1,17 @@
+syntax="proto3";
+
+message ClientReuqest{}
+
+message Pair{
+    string number = 1;
+    string date   = 2;
+}
+
+message ClientResponse{
+    optional Pair pair = 1;
+    optional string reason = 2;
+}
+
+service GrpcNumberService{
+    rpc GetNumberAndDate(ClientReuqest) returns (ClientResponse) {}
+}

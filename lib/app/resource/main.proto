@@ -1,0 +1,63 @@
+syntax="proto3";
+
+message ClientNumberRequest{
+    string number               = 1;
+}
+
+message ClientDateAndCostRequest{
+    string date                 = 1;
+    int64 cost                  = 2;
+}
+
+message ClientIntervalsAndNameRequest{
+    string to                   = 1;
+    string from                 = 2;
+    string name                 = 3;
+}
+
+
+message ClientDetailOrder{
+    string arcticle             = 1;
+    string name                 = 2;
+    int64 count                 = 3;
+    int64 price                 = 4;
+}
+
+message ClientCreateRequest{
+    string receiver             = 1;
+    string address              = 2;
+    string type_pay             = 3;
+    string type_delivered       = 4;
+    repeated ClientDetailOrder detail_orders  = 5;
+}
+
+message OrderInfo{
+    string receiver             = 1;
+    string address              = 2;
+    string type_pay             = 3;
+    string type_delivered       = 4;
+    string number               = 5;
+    string date                 = 6;
+    int64 cost                  = 7;
+    repeated ClientDetailOrder detail_orders  = 8;
+}
+
+message ClientSelectResponse{
+    repeated OrderInfo order_info = 1;
+    optional string reason      = 2;
+}
+
+message ClientCreateResponse{
+    optional string reason      = 1;
+}
+
+service GrpcService{
+    rpc GetByNumber(ClientNumberRequest) returns (ClientSelectResponse) {}
+
+    rpc GetByDateAndCost(ClientDateAndCostRequest) returns (ClientSelectResponse) {}
+
+    rpc GetByIntervalsAndName(ClientIntervalsAndNameRequest) returns (ClientSelectResponse) {}
+
+    rpc CreateOrder(ClientCreateRequest) returns (ClientCreateResponse) {}
+}
+

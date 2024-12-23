@@ -1,0 +1,21 @@
+Пример запроса на создание заказа
+{
+  "receiver": "John Doe",
+  "address": "123 Main St, Anytown, CA 91234",
+  "type_pay": "CreditCard",
+  "type_delivered": "Shipping",
+  "detail_orders": [
+    {
+      "arcticle": "Widget A",
+      "name": "Red Widget",
+      "count": 2,
+      "price": 10
+    },
+    {
+      "arcticle": "Widget B",
+      "name": "Blue Widget",
+      "count": 1,
+      "price": 15
+    }
+  ]
+}
